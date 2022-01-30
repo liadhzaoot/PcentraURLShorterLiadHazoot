@@ -4,7 +4,7 @@ from string import ascii_letters, digits
 from django.core.exceptions import ObjectDoesNotExist
 
 # Try to get the value from the settings module
-SIZE = getattr(settings, "MAXIMUM_URL_CHARS", 7)
+SIZE = getattr(settings, "MAXIMUM_URL_CHARS", 1)
 
 AVAIABLE_CHARS = ascii_letters + digits
 
@@ -64,7 +64,7 @@ def increase_by_one(pre_shortener_url):
     new_shortener_url = list(pre_shortener_url)
     for i in range(len(new_shortener_url) - 1, -1, -1):  # run backwards on pre_shortener_url
         letter_index = AVAIABLE_CHARS.find(new_shortener_url[i])  # get the index from 62base
-        if i == SIZE - 1:  # add one to first letter
+        if i == len(new_shortener_url) - 1:  # add one to first letter
             letter_index += 1
         letter_index += carry  # add carry if exist
         if letter_index >= len(AVAIABLE_CHARS):  # create carry if needs
