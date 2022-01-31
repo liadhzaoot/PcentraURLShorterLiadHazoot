@@ -4,7 +4,7 @@ from string import ascii_letters, digits
 from django.core.exceptions import ObjectDoesNotExist
 
 # Try to get the value from the settings module
-SIZE = getattr(settings, "MAXIMUM_URL_CHARS", 1)
+SIZE = getattr(settings, "MAXIMUM_URL_CHARS", 7)
 
 AVAIABLE_CHARS = ascii_letters + digits
 
@@ -34,7 +34,7 @@ def create_shortened_url(model_instance):
 #---------------------------------------------------------------------------------------------------------------------------------------------
 
 def make_first_random_code():
-    return "".join([AVAIABLE_CHARS[0] for i in range(SIZE)])
+    return "".join([AVAIABLE_CHARS[0] for _ in range(SIZE)])
 
 def add_more_options(pre_shortener_url):
     """

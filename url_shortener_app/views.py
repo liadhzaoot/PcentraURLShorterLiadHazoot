@@ -12,7 +12,7 @@ def home_view(request):
         my_json = request.body.decode('utf8').replace("'", '"')
         data = json.loads(my_json)
 
-        shortened_object = UrlShortener.objects.create(long_url=data["url"])
+        shortened_object = UrlShortener.objects.create(long_url=data["url"])  # generate new short_url
         short_url = request.build_absolute_uri('/s/') + shortened_object.short_url
         if shortened_object:
             return HttpResponse(short_url, status=201)  # status 201 craeted
